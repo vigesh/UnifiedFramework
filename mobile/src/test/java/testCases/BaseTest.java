@@ -17,8 +17,9 @@ public class BaseTest  {
     }
 
     @BeforeClass
-    public void envSetup() throws MalformedURLException {
+    public void envSetup() throws Exception {
         AppSetup.appLaunch();
+        //AppSetup.launch();
     }
 
 
@@ -28,5 +29,5 @@ public class BaseTest  {
             AppSetup.getDriver().quit();
         }
     }
-    public Login getLogin(){return new Login(); }
+    public Login getLogin(){return new Login(AppSetup.driver); }
 }

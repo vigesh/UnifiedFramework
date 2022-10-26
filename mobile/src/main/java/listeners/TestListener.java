@@ -83,7 +83,7 @@ public class TestListener implements ITestListener {
 
         //Get driver from BaseTest and assign to local webdriver variable.
         Object testClass = iTestResult.getInstance();
-        WebDriver driver = AppSetup.getDriver();
+        driver = AppSetup.getDriver();
 
         //Allure ScreenShotRobot and SaveTestLog
         if (driver != null) {
@@ -96,7 +96,7 @@ public class TestListener implements ITestListener {
 
         //Take base64Screenshot screenshot for extent reports
         String base64Screenshot =
-                "data:image/png;base64," + ((TakesScreenshot) Objects.requireNonNull(driver)).getScreenshotAs(OutputType.BASE64);
+                "data:image/png;base64," + ((TakesScreenshot) driver).getScreenshotAs(OutputType.BASE64);
 
         //ExtentReports log and screenshot operations for failed tests.
         getTest().log(Status.FAIL, "Test Failed: " + iTestResult.getThrowable(),
