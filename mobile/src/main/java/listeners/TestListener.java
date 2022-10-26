@@ -1,6 +1,6 @@
 package listeners;
 
-import Browsers.BrowserSetup;
+import app.AppSetup;
 import com.aventstack.extentreports.Status;
 import extentreports.ExtentTestManager;
 import jira.JiraCreateIssue;
@@ -23,7 +23,7 @@ import static extentreports.ExtentManager.getExtentReports;
 import static extentreports.ExtentTestManager.getTest;
 
 public class TestListener implements ITestListener {
-    public WebDriver driver=BrowserSetup.getDriver();
+    public WebDriver driver= AppSetup.getDriver();
     private static String getTestMethodName(ITestResult iTestResult) {
         return iTestResult.getMethod().getConstructorOrMethod().getName();
     }
@@ -83,7 +83,7 @@ public class TestListener implements ITestListener {
 
         //Get driver from BaseTest and assign to local webdriver variable.
         Object testClass = iTestResult.getInstance();
-        WebDriver driver = BrowserSetup.getDriver();
+        WebDriver driver = AppSetup.getDriver();
 
         //Allure ScreenShotRobot and SaveTestLog
         if (driver != null) {

@@ -1,8 +1,7 @@
 package listeners;
 
 
-import Browsers.BrowserSetup;
-import com.aventstack.extentreports.Status;
+import app.AppSetup;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -31,7 +30,7 @@ public class Retry implements IRetryAnalyzer {
 
     public void extendReportsFailOperations(ITestResult iTestResult) {
         Object testClass = iTestResult.getInstance();
-        WebDriver webDriver = ((BrowserSetup) testClass).getDriver();
+        WebDriver webDriver = ((AppSetup) testClass).getDriver();
         String base64Screenshot = "data:image/png;base64," + ((TakesScreenshot) webDriver).getScreenshotAs(OutputType.BASE64);
         //getTest().log(Status.FAIL, "Test Failed",
           //  getTest().addScreenCaptureFromBase64String(base64Screenshot).getModel().getMedia().get(0));

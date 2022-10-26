@@ -10,8 +10,8 @@ public class ExtentManager {
         ExtentSparkReporter reporter = new ExtentSparkReporter("./extent-reports/extent-report.html");
         reporter.config().setReportName("Sample Extent Report");
         extentReports.attachReporter(reporter);
-        extentReports.setSystemInfo("Blog Name", "SW Test Academy");
-        extentReports.setSystemInfo("Author", "Onur Baskirt");
+        extentReports.setSystemInfo("APP", "EBANQ");
+        extentReports.setSystemInfo("ENV", "QA");
         return extentReports;
     }
 }

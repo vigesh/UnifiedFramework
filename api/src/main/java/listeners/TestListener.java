@@ -3,8 +3,6 @@ package listeners;
 import Browsers.BrowserSetup;
 import com.aventstack.extentreports.Status;
 import extentreports.ExtentTestManager;
-import jira.JiraCreateIssue;
-import jira.JiraServiceProvider;
 import logs.Log;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
@@ -122,16 +120,16 @@ public class TestListener implements ITestListener {
 
     }
 
-    public void createIssueInJiraOnFailure(ITestResult result) throws IOException {
-        boolean islogIssue = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(JiraCreateIssue.class).isCreateIssue();
-
-        if (islogIssue) {
-            JiraServiceProvider JiraServiceProvider = new JiraServiceProvider("https://digital-hub-delivery.atlassian.net/", "62a07983e318a50069383cd5", "3eTYaEDjL6Y3DYzdziHU2942", "DH");
-            String issueDescription = "Failure Reason from Automation Testing\n\n" + result.getThrowable().getMessage();
-            issueDescription.concat(ExceptionUtils.getMessage(result.getThrowable()));
-            String issueSummary = result.getMethod().getConstructorOrMethod().getMethod().getName()+ "Failed in Automation Testing";
-            //JiraServiceProvider.createJiraIssue("Bug", issueSummary, issueDescription, "62a07983e318a50069383cd5");
-            JiraServiceProvider.createJiraIssueForFailure("Bug", issueSummary, issueDescription);
-        }
-    }
+//    public void createIssueInJiraOnFailure(ITestResult result) throws IOException {
+//        boolean islogIssue = result.getMethod().getConstructorOrMethod().getMethod().getAnnotation(JiraCreateIssue.class).isCreateIssue();
+//
+//        if (islogIssue) {
+//            JiraServiceProvider JiraServiceProvider = new JiraServiceProvider("https://digital-hub-delivery.atlassian.net/", "62a07983e318a50069383cd5", "3eTYaEDjL6Y3DYzdziHU2942", "DH");
+//            String issueDescription = "Failure Reason from Automation Testing\n\n" + result.getThrowable().getMessage();
+//            issueDescription.concat(ExceptionUtils.getMessage(result.getThrowable()));
+//            String issueSummary = result.getMethod().getConstructorOrMethod().getMethod().getName()+ "Failed in Automation Testing";
+//            //JiraServiceProvider.createJiraIssue("Bug", issueSummary, issueDescription, "62a07983e318a50069383cd5");
+//            JiraServiceProvider.createJiraIssueForFailure("Bug", issueSummary, issueDescription);
+//        }
+//    }
 }

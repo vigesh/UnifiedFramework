@@ -50,6 +50,7 @@ public class Transfers extends Helper {
         getTest().log(Status.PASS,"Amount Transfer between Accounts");
         return this;
     }
+    @Step("Verify User in Transfer Between Accounts Page")
     public Transfers verifyUserInTransferBetweenAccountsPage(){
         waitForElement(btnContinue);
         Assert.assertTrue(driver.getCurrentUrl().contains("transfer-between-accounts"));

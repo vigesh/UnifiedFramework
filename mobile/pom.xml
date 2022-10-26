@@ -10,7 +10,6 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <aspectj.version>1.9.6</aspectj.version>
-        <selenium-version>4.3.0</selenium-version>
         <testng-version>7.4.0</testng-version>
         <ashot-version>1.5.4</ashot-version>
         <allure-testng-version>2.17.3</allure-testng-version>
@@ -21,17 +20,16 @@
     </properties>
 
     <dependencies>
-
+        <!-- https://mvnrepository.com/artifact/io.appium/java-client -->
+        <dependency>
+            <groupId>io.appium</groupId>
+            <artifactId>java-client</artifactId>
+            <version>7.5.0</version>
+        </dependency>
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.seleniumhq.selenium</groupId>
-            <artifactId>selenium-java</artifactId>
-            <version>${selenium-version}</version>
         </dependency>
 
         <dependency>
@@ -113,7 +111,7 @@
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <version>1.9.6</version>
+            <version>1.9.9.1</version>
             <scope>runtime</scope>
         </dependency>
         <dependency>
@@ -134,8 +132,13 @@
             <artifactId>fillo</artifactId>
             <version>1.21</version>
         </dependency>
-
     </dependencies>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://jitpack.io</url>
+        </repository>
+    </repositories>
     <build>
         <defaultGoal>package</defaultGoal>
         <resources>
