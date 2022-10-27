@@ -38,6 +38,7 @@ public class Transfers extends Helper {
     }
     @Step("Perform Transfer Between Accounts")
     public Transfers andPerformTransfersBetweenAccounts() throws Exception {
+        idleWait(5000);
         selectAccountDropdown(drpdwnDebitAccount, Constants.data.get("debitaccount"),"Debit Account");
         selectAccountDropdown(drpdwnCreditAccount, Constants.data.get("creditaccount"),"Credit Account");
         writeText(txtAmountToTransfer,Constants.data.get("amount"));
