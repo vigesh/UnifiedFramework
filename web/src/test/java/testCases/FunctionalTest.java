@@ -16,7 +16,7 @@ import java.lang.reflect.Method;
 @Feature("Corporate Account")
 public class FunctionalTest extends BaseTest {
 
-    @Test(priority = 0)
+    @Test
     @Description("Verify the current Account balance for the selected Account")
     public void verifyCurrentAccountBalance(Method method) throws Throwable {
         Constants.testName = method.getName();

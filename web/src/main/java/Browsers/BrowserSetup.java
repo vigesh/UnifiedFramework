@@ -18,9 +18,9 @@ public class BrowserSetup {
 
     public static RemoteWebDriver driver;
 
-    public static void openBrowser() {
+    public static void openBrowser(String browser, String os, String version) {
         if(Constants.appDetails.get("runmode").equalsIgnoreCase("local")){
-            switch (Constants.appDetails.get("browser")){
+            switch (browser){
                 case "CHROME":
                 case "chrome":
                     WebDriverManager.chromedriver().setup();
@@ -44,17 +44,11 @@ public class BrowserSetup {
         else if(Constants.appDetails.get("runmode").equalsIgnoreCase("lambda")){
             DesiredCapabilities capabilities = new DesiredCapabilities();
 
-            if(Constants.appDetails.get("browser").equalsIgnoreCase("chrome")){
-                capabilities.setCapability("browserName", Constants.appDetails.get("browser"));
-                capabilities.setCapability("version", Constants.appDetails.get("chrome.version"));
-                capabilities.setCapability("platform", Constants.appDetails.get("windows.os"));
-            } else if(Constants.appDetails.get("browser").equalsIgnoreCase("firefox")){
-                capabilities.setCapability("browserName", Constants.appDetails.get("browser"));
-                capabilities.setCapability("version", Constants.appDetails.get("firefox.version"));
-                capabilities.setCapability("platform", Constants.appDetails.get("windows.os"));
-            }
-            capabilities.setCapability("build", "RegressionTest");
-            capabilities.setCapability("name", "EBANQ");
+                capabilities.setCapability("browserName", browser);
+                capabilities.setCapability("version", version);
+                capabilities.setCapability("platform", os);
+                capabilities.setCapability("build", "RegressionTest");
+                capabilities.setCapability("name", "EBANQ");
             try {
                 driver = new RemoteWebDriver(new URL("https://" + Constants.appDetails.get("lambda.user") + ":" + Constants.appDetails.get("lambda.accesskey")
                         + Constants.appDetails.get("gridURL")), capabilities);
