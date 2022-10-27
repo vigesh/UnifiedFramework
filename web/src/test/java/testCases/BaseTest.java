@@ -4,16 +4,14 @@ import Browsers.BrowserSetup;
 import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import pages.Dashboard;
 import pages.Login;
 import pages.Transfers;
 import utils.ReadProperty;
 import java.io.File;
 import java.io.IOException;
+import java.net.MalformedURLException;
 
 public class BaseTest  {
 
@@ -26,9 +24,9 @@ public class BaseTest  {
         ReadProperty.loadProperties();
     }
 
-    @BeforeMethod
+    @BeforeTest
     @Parameters({"browser","os","version"})
-    public void envSetup(String browser, String OS, String version){
+    public void envSetup(String browser, String OS, String version) throws MalformedURLException {
         BrowserSetup.openBrowser(browser, OS, version);
     }
 
@@ -38,7 +36,7 @@ public class BaseTest  {
         byte[] fileContent = FileUtils.readFileToByteArray(src);
         return fileContent;
     }
-    @AfterMethod
+    @AfterTest
     public void clearBrowser() throws Exception {
         if(BrowserSetup.getDriver()!=null){
             BrowserSetup.getDriver().quit();

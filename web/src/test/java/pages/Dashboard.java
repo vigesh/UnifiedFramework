@@ -4,7 +4,6 @@ import com.aventstack.extentreports.Status;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import utils.Constants;
 import utils.Helper;
 
 import static extentreports.ExtentTestManager.getTest;
@@ -27,14 +26,14 @@ public class Dashboard extends Helper {
     }
     @Step("Select Account Number in Dashboard")
     public Dashboard selectAccountNumber() throws Exception {
-        selectAccountDropdown(drpdwnAccountId, Constants.data.get("accountid"),"Account Number");
+        selectAccountDropdown(drpdwnAccountId, "EBQ11113487654","Account Number");
         getTest().log(Status.PASS,"Select Account Number");
         return this;
     }
     @Step("Verify Current Balance")
     public Dashboard andVerifyCurrentBalance() throws Exception {
         currentBalance=readText(lblCurrentBalance, "Current Balance");
-        getTest().log(Status.PASS,"Current Account Balance in Account Number "+Constants.data.get("accountid")+" is: "+currentBalance);
+        getTest().log(Status.PASS,"Current Account Balance in Account Number EBQ11113487654 is: "+currentBalance);
         return this;
      }
 

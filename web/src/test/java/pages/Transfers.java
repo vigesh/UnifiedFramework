@@ -39,10 +39,10 @@ public class Transfers extends Helper {
     @Step("Perform Transfer Between Accounts")
     public Transfers andPerformTransfersBetweenAccounts() throws Exception {
         idleWait(5000);
-        selectAccountDropdown(drpdwnDebitAccount, Constants.data.get("debitaccount"),"Debit Account");
-        selectAccountDropdown(drpdwnCreditAccount, Constants.data.get("creditaccount"),"Credit Account");
-        writeText(txtAmountToTransfer,Constants.data.get("amount"));
-        writeText(txtDescription,Constants.data.get("transferdescription"));
+        selectAccountDropdown(drpdwnDebitAccount, "EBQ11113487654","Debit Account");
+        selectAccountDropdown(drpdwnCreditAccount, "EBQ11223487456","Credit Account");
+        writeText(txtAmountToTransfer,"200");
+        writeText(txtDescription,"Monthly EMI on Loan");
         click(btnContinue,"Continue");
         waitForPageLoad();
         click(btnConfirm,"Confirm");

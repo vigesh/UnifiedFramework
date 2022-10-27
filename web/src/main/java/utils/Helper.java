@@ -39,24 +39,37 @@ public class Helper {
     }
     //Click Method
     public void click(By by, String element) throws Exception {
-        WebElement ele=findElement(by);
-        ele.click();
+        try{
+            WebElement ele=findElement(by);
+            ele.click();
+        }catch(Exception Ex){
+            throw new Exception("Click action failed on element :"+element+" "+Ex.getMessage());
+        }
+
         //ExtentTestManager.getTest().log(Status.INFO,"Clicked on element: "+element);
     }
 
     //Write Text
     public void writeText(By by, String text) throws Exception {
-        WebElement ele=findElement(by);
-        ele.sendKeys(text);
+        try{
+            WebElement ele=findElement(by);
+            ele.sendKeys(text);
+        }catch(Exception Ex){
+            throw new Exception("send key action failed on element :"+text+" "+Ex.getMessage());
+        }
         //ExtentTestManager.getTest().log(Status.INFO,"Value entered on element: "+ele.getText()+" with value: "+text);
     }
 
     //Read Text
     public String readText(By by, String element) throws Exception {
-        String retValue=findElement(by).getText();
-        getTest().log(Status.INFO,"Reading text on element "+element+ " is: "+retValue);
+        String retValue = null;
+        try{
+            retValue=findElement(by).getText();
+            getTest().log(Status.INFO,"Reading text on element "+element+ " is: "+retValue);
+        }catch(Exception Ex){
+            throw new Exception("Reading text on element "+element+ " is: "+retValue+" "+Ex.getMessage());
+        }
         return retValue;
-
     }
 
     //Get Attribute
@@ -71,11 +84,16 @@ public class Helper {
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.presenceOfElementLocated(by));
     }
-    public WebElement findElement(By byElement) throws InterruptedException {
-        WebElement ele= waitForElement(byElement);
-        ((JavascriptExecutor)driver).executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", ele);
-        idleWait(1000);
-        ((JavascriptExecutor)driver).executeScript("arguments[0].setAttribute('style', 'background: transparent; border: 0px solid red;');", ele);
+    public WebElement findElement(By byElement) throws Exception {
+        WebElement ele = null;
+        try{
+             ele= waitForElement(byElement);
+            ((JavascriptExecutor)driver).executeScript("arguments[0].setAttribute('style', 'background: yellow; border: 2px solid red;');", ele);
+            idleWait(1000);
+            ((JavascriptExecutor)driver).executeScript("arguments[0].setAttribute('style', 'background: transparent; border: 0px solid red;');", ele);
+        }catch(Exception Ex){
+            throw new Exception("Finding element: "+ele+ " " +Ex.getMessage());
+        }
         return ele;
     }
 
@@ -185,7 +203,7 @@ public class Helper {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", findElement(element));
     }
-    public List<WebElement> listOfElements(By element) throws InterruptedException {
+    public List<WebElement> listOfElements(By element) throws Exception {
         List<WebElement> elementList=findElement(element).findElements(element);
         return elementList;
     }
@@ -205,12 +223,18 @@ public class Helper {
     }*/
 
     public void selectAccountDropdown(By by, String dropdownValue, String element) throws Exception {
-        click(by,element);
-        idleWait(500);
-        List<WebElement>elements=listOfElements(By.xpath("//span[text()='"+dropdownValue+"']"));
+
+        try{
+            click(by,element);
+            idleWait(500);
+            List<WebElement>elements=listOfElements(By.xpath("//span[text()='"+dropdownValue+"']"));
             if(elements.size()>=1){
                 click(By.xpath("//span[text()='"+dropdownValue+"'][1]"),element);
             }
+
+        }catch(Exception Ex){
+            throw new Exception("Account dropdown selection failed: " +Ex.getMessage());
+        }
     }
 
 }
