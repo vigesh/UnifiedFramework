@@ -30,7 +30,7 @@ public class Login extends Helper {
     By btnConfirm=By.xpath("//android.view.View[@resource-id='nav']//android.widget.Button[@text='Confirm']");
     By lblAckMsg=By.xpath("//android.view.View[contains(@text,'Your request has been sent for approval')]");
 
-    @Step
+    @Step("Login the app with valid credentials")
     public void doAppLogin() throws Exception {
         try {
             click(firstclick);
@@ -43,7 +43,7 @@ public class Login extends Helper {
             throw new Exception(String.valueOf(E.getCause()));
         }
     }
-    @Step
+    @Step("Pin setup for the next login")
     public void pinSetForLogin() throws Exception {
          pinSelection("1");pinSelection("2");pinSelection("3");
             pinSelection("4");pinSelection("5");
@@ -52,7 +52,7 @@ public class Login extends Helper {
             pinSelection("4");pinSelection("5");
     }
 
-    @Step
+    @Step("Transfer the amount between accounts")
     public void accountTransferBetweenAccounts() throws Exception {
 
             waitAndClick(hamburgerIcon);
