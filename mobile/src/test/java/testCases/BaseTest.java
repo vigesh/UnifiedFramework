@@ -4,10 +4,8 @@ import app.AppSetup;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
-import pages.Login;
+import org.testng.annotations.Parameters;
 import utils.ReadProperty;
-
-import java.net.MalformedURLException;
 
 public class BaseTest  {
 
@@ -17,9 +15,9 @@ public class BaseTest  {
     }
 
     @BeforeClass
-    public void envSetup() throws Exception {
-        AppSetup.appLaunch();
-        //AppSetup.launch();
+    @Parameters({"device","platform","version"})
+    public void envSetup(String device, String platform, String version) throws Exception {
+        AppSetup.appLaunch(device, platform, version);
     }
 
 
@@ -29,5 +27,5 @@ public class BaseTest  {
             AppSetup.getDriver().quit();
         }
     }
-    public Login getLogin(){return new Login(AppSetup.driver); }
+    //public Login getLogin(){return new Login(AppSetup.getDriver()); }
 }

@@ -2,6 +2,8 @@ package testCases;
 
 import app.AppSetup;
 import extentreports.ExtentTestManager;
+import io.appium.java_client.MobileElement;
+import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
@@ -26,10 +28,17 @@ public class FunctionalTest extends BaseTest {
         ExtentTestManager.startTest(Constants.testName, "Verify the account login");
         DataReader.readTestData("Testdata", Constants.testName);
 
-        Login login=new Login(AppSetup.driver);
+        Login login=new Login((AndroidDriver<MobileElement>) AppSetup.getDriver());
         login.doAppLogin();
     }
 
+@Test
+    @Description("Do Transfer between accounts")
+    public void verifyAccountTransferBetweenAccounts() throws Exception {
+    Login login=new Login((AndroidDriver<MobileElement>) AppSetup.getDriver());
+    login.pinSetForLogin();
+    login.accountTransferBetweenAccounts();
 
+}
 
 }

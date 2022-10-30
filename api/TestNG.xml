@@ -8,7 +8,11 @@
 -->
     <test name="RegressionTest" >
         <classes>
-            <class name="testCases.FunctionalTest"/>
+            <class name="testCases.BasicApiTest"/>
+<!--            <class name="testCases.TC001_GET_Request"/>-->
+<!--            <class name="testCases.TC003_Delete_Request2"/>-->
+<!--            <class name="testCases.TC002_POST_Request"/>-->
+<!--            <class name="testCases.TC004_BasicAuthentication"/>-->
         </classes>
     </test>
 

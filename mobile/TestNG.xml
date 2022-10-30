@@ -1,12 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Test Suite" >
-    <!--<listeners>
-        <listener class-name="utils.listeners.TestListener"/>
-        <listener class-name="utils.listeners.AnnotationTransformer"/>
-    </listeners>
--->
-    <test name="RegressionTest" >
+<suite name="Test Suite" parallel="tests" thread-count="2">
+
+    <test name="Oppo" >
+        <parameter name="device" value="Oppo K10"/>
+        <parameter name="platform" value="android"/>
+        <parameter name="version" value="12"/>
+        <classes>
+            <class name="testCases.FunctionalTest"/>
+        </classes>
+    </test>
+    <test name="IOS" >
+        <parameter name="device" value="Pixel 6"/>
+        <parameter name="platform" value="ios"/>
+        <parameter name="version" value="12"/>
         <classes>
             <class name="testCases.FunctionalTest"/>
         </classes>

@@ -1,46 +1,32 @@
 package testCases;
 
-import Browsers.BrowserSetup;
-import com.aventstack.extentreports.ExtentTest;
-import extentreports.ExtentTestManager;
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
-import org.testng.annotations.*;
-import pages.Dashboard;
-import pages.Login;
-import pages.Transfers;
-import utils.ReadProperty;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import utils.TestUtil;
 
-import java.io.File;
-import java.io.IOException;
+public class BaseTest {
 
-public class BaseTest  {
+    public Response res = null; //Response
+    public JsonPath jp  = null; //JsonPath
 
-    public Login getLoginPage() { return new Login(); }
-    public Dashboard getDashboardPage() { return new Dashboard(); }
-    public Transfers getTransfersPage() { return new Transfers(); }
-
-    @BeforeSuite
-    public void getAllDetails() throws Exception {
-        ReadProperty.loadProperties();
-    }
+    //Instantiate a Helper Test Methods (testUtils) Object
+    TestUtil testUtil = new TestUtil();
 
     @BeforeClass
-    public void envSetup(){
-        BrowserSetup.openBrowser();
+    public void setup() {
+        //Test Setup
+        utils.RestAssuredUtil.setBaseURI(); //Setup Base URI
+        utils.RestAssuredUtil.setBasePath("api"); //Setup Base Path
+        utils.RestAssuredUtil.setContentType(ContentType.JSON); //Setup Content Type
     }
 
-    public byte[] getByteScreenshot() throws IOException
-    {
-        File src = ((TakesScreenshot) BrowserSetup.getDriver()).getScreenshotAs(OutputType.FILE);
-        byte[] fileContent = FileUtils.readFileToByteArray(src);
-        return fileContent;
-    }
     @AfterClass
-    public void clearBrowser() throws Exception {
-        if(BrowserSetup.getDriver()!=null){
-            BrowserSetup.getDriver().quit();
-        }
+    public void afterTest() {
+        //Reset Values
+        utils.RestAssuredUtil.resetBaseURI();
+        utils.RestAssuredUtil.resetBasePath();
     }
 }
