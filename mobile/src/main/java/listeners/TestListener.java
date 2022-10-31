@@ -5,6 +5,7 @@ import com.aventstack.extentreports.Status;
 import extentreports.ExtentTestManager;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
+import io.qameta.allure.Attachment;
 import jira.JiraCreateIssue;
 import jira.JiraServiceProvider;
 import logs.Log;
@@ -31,6 +32,7 @@ public class TestListener implements ITestListener {
     }
 
     //Text attachments for Allure
+    @Attachment(value="Page screenshot", type="image/png")
     public byte[] saveScreenshotPNG(WebDriver driver) {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
@@ -45,11 +47,12 @@ public class TestListener implements ITestListener {
     }
 
     //Text attachments for Allure
+    @Attachment(value = "{0}", type = "text/plain")
     public static String saveTextLog(String message) {
         return message;
     }
-
     //HTML attachments for Allure
+    @Attachment(value = "{0}", type = "text/html")
     public static String attachHtml(String html) {
         return html;
     }

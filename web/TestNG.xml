@@ -9,20 +9,20 @@
             <class name="testCases.FunctionalTest"/>
         </classes>
     </test>
-    <test name="ChromeTest" >
-        <parameter name="browser" value="chrome"/>
-        <parameter name="os" value="Windows 10"/>
-        <parameter name="version" value="latest"/>
-        <classes>
-            <class name="testCases.FunctionalTest"/>
-        </classes>
-    </test>
-    <test name="Safari Test">
-        <parameter name="browser" value="safari" />
-        <parameter name="version" value="latest" />
-        <parameter name="os" value="macos 10.13" />
-        <classes>
-            <class name="testCases.FunctionalTest" />
-        </classes>
-    </test>
+<!--    <test name="ChromeTest" >-->
+<!--        <parameter name="browser" value="chrome"/>-->
+<!--        <parameter name="os" value="Windows 10"/>-->
+<!--        <parameter name="version" value="latest"/>-->
+<!--        <classes>-->
+<!--            <class name="testCases.FunctionalTest"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+<!--    <test name="Safari Test">-->
+<!--        <parameter name="browser" value="safari" />-->
+<!--        <parameter name="version" value="latest" />-->
+<!--        <parameter name="os" value="macos 10.13" />-->
+<!--        <classes>-->
+<!--            <class name="testCases.FunctionalTest" />-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>

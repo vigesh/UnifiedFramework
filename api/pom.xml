@@ -3,9 +3,16 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>UnifiedFramework</groupId>
+        <artifactId>UnifiedFramework</artifactId>
+        <version>1.0</version>
+    </parent>
     <groupId>UnifiedFramework</groupId>
-    <artifactId>API</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <artifactId>api</artifactId>
+    <version>1.0</version>
+    <packaging>jar</packaging>
+
 
     <properties>
         <rest-assured-version>4.4.0</rest-assured-version>
@@ -201,16 +208,15 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>TestNG.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                     <systemProperties>
                         <property>
                             <name>allure.results.directory</name>
                             <value>target/allure-results</value>
                         </property>
                     </systemProperties>
-                    <argLine>
-                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
-                    </argLine>
-
                 </configuration>
 
             </plugin>
