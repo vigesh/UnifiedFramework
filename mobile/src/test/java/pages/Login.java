@@ -17,7 +17,7 @@ public class Login extends Helper {
      * Web Elements
      */
     By txtUsername = By.xpath("//android.view.View[1]/android.view.View/android.widget.EditText");
-    By txtPassword = By.xpath("//android.view.View[2]/android.view.View/android.widget.EditText");
+    By txtPassword = By.xpath("//android.view.View[2]/android.view.View/android.widget.EditText|//android.widget.EditText[@text='Enter password']");
     By btnLogin = By.xpath("//android.widget.Button[@text='Login']");
     By firstclick = By.xpath("//*[@resource-id='android:id/content']");
     By hamburgerIcon=By.xpath("//android.view.View[@resource-id='nav']//android.widget.Button");
@@ -27,7 +27,7 @@ public class Login extends Helper {
     By drpdownCreditTo=By.xpath("//android.view.View[@text='Credit to *']/../../following-sibling::android.widget.Button");
     By txtAmountToTransfer=By.xpath("//android.view.View[2]/android.widget.EditText");
     By btnContinue=By.xpath("//android.widget.Button[@text='Continue']");
-    By btnConfirm=By.xpath("//android.view.View[@resource-id='nav']//android.widget.Button[@text='Confirm']");
+    By btnConfirm=By.xpath("//android.widget.Button[@text='Confirm']|//*[@resource-id='nav']//android.widget.Button[@text='Confirm']");
     By lblAckMsg=By.xpath("//android.view.View[contains(@text,'Your request has been sent for approval')]");
 
     @Step("Login the app with valid credentials")
@@ -55,7 +55,7 @@ public class Login extends Helper {
     @Step("Transfer the amount between accounts")
     public void accountTransferBetweenAccounts() throws Exception {
 
-            waitAndClick(hamburgerIcon);
+            waitAndClick(hamburgerIcon);handleSync(2000);
             waitAndClick(tabTransfers);
             handleSync(2000);
             click(tabTransfersBetweenAccounts);
@@ -69,7 +69,7 @@ public class Login extends Helper {
             sendKey(txtAmountToTransfer,"200");
             click(btnContinue);
             handleSync(3000);
-            click(firstclick);
+            click(firstclick);handleSync(2000);
             click(btnConfirm);
             handleSync(2000);
             Assert.assertTrue(waitAndFindElement(lblAckMsg).isDisplayed());

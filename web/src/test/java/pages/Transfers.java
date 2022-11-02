@@ -4,16 +4,16 @@ import com.aventstack.extentreports.Status;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.testng.Assert;
-import utils.Constants;
 import utils.Helper;
+
 
 import static extentreports.ExtentTestManager.getTest;
 
 public class Transfers extends Helper {
 
     By tabTransferBetweenAccounts= By.xpath("//div[text()='Transfer Between Accounts']");
-    By drpdwnDebitAccount=By.xpath("//*[@formcontrolname='accountFrom']");
-    By drpdwnCreditAccount=By.xpath("//*[@formcontrolname='accountTo']");
+    By drpdwnDebitAccount=By.xpath("//*[@formcontrolname='accountFrom']//ng-select");
+    By drpdwnCreditAccount=By.xpath("//*[@formcontrolname='accountTo']//ng-select");
     By txtAmountToTransfer=By.xpath("//*[@title='Outgoing Amount']");
     By txtDescription=By.xpath("//*[@id='description']");
     By btnContinue=By.xpath("//*[normalize-space()='Continue']");

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="Test Suite" parallel="tests" thread-count="2">
+<suite name="Test Suite" parallel="tests" thread-count="1">
 
     <test name="Regression Test" >
         <parameter name="device" value="Oppo K10"/>
         <parameter name="platform" value="android"/>
-        <parameter name="version" value="12"/>
+        <parameter name="version" value="11"/>
         <classes>
             <class name="testCases.FunctionalTest"/>
         </classes>
