@@ -140,7 +140,11 @@
             <artifactId>fillo</artifactId>
             <version>1.21</version>
         </dependency>
-
+        <dependency>
+            <groupId>org.zaproxy</groupId>
+            <artifactId>zap-clientapi</artifactId>
+            <version>1.10.0</version>
+        </dependency>
     </dependencies>
     <build>
         <defaultGoal>package</defaultGoal>
@@ -176,7 +180,7 @@
                 <version>${maven-surefire-plugin-version}</version>
                 <configuration>
                     <suiteXmlFiles>
-                        <suiteXmlFile>TestNG.xml</suiteXmlFile>
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"

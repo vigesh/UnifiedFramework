@@ -18,5 +18,10 @@ public class Constants {
     public static String testName;
     public static String testExeTime;
     public static String emailfiletoattach;
+    public static String ZAP_PROXY_ADDRESS = "localhost";
+    public static int ZAP_PROXY_PORT = 8081;
+    public static String ZAP_API_KEY="fpa752knsp5alfsun1lh1ik15s";
+    public static String ZAP_PROXY_SERVER=ZAP_PROXY_ADDRESS+":"+ZAP_PROXY_PORT;
+
 
 }

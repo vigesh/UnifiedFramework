@@ -1,5 +1,6 @@
 package testCases;
 
+import Browsers.BrowserSetup;
 import extentreports.ExtentTestManager;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -54,6 +55,5 @@ public class FunctionalTest extends BaseTest {
         getTransfersPage().verifyUserInTransferPage().thenNavigateToTransfersBetweenAccountsPage().verifyUserInTransferBetweenAccountsPage().andPerformTransfersBetweenAccounts();
         getDashboardPage().doLogout();
     }
-
-
+    
 }

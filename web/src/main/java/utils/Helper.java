@@ -6,6 +6,9 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.*;
 import org.testng.asserts.SoftAssert;
+import org.zaproxy.clientapi.core.ApiResponse;
+import org.zaproxy.clientapi.core.ClientApi;
+import org.zaproxy.clientapi.core.ClientApiException;
 
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +23,6 @@ public class Helper {
     public WebDriverWait wait;
     ExcelUtility excel = new ExcelUtility();
     public SoftAssert softAssert=new SoftAssert();
-
 
     //Constructor
     public Helper() {
@@ -238,3 +240,4 @@ public class Helper {
     }
 
 }
+

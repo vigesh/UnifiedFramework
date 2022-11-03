@@ -4,6 +4,8 @@ import com.aventstack.extentreports.Status;
 import io.qameta.allure.Step;
 import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
+import org.zaproxy.clientapi.core.ApiResponse;
+import org.zaproxy.clientapi.core.ClientApiException;
 import utils.Constants;
 import utils.Helper;
 
@@ -38,5 +40,11 @@ public class Login extends Helper {
         return this;
     }
 
+    @Step("Invoking the Amazon App")
+    public Login appAmazonLaunch() throws Exception {
+        driver.get("https://www.amazon.com/");
+        getTest().log(Status.PASS,"Invoking the amazon app");
+        return this;
+    }
 
 }
