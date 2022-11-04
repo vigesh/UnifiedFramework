@@ -32,7 +32,7 @@ public class DBHelper {
         con.close();
     }
 
-    @Step("Get the username for the userID: {0}")
+    @Step("Update the {1} for the userID: {0} with {2}")
     public static void updateUser(String userId, String variable, String value) throws SQLException, ClassNotFoundException {
         String dbURL = Constants.DBURL;
         String username = Constants.DBUser;
