@@ -57,7 +57,7 @@ public class Login extends Helper {
 
             waitAndClick(hamburgerIcon);handleSync(2000);
             waitAndClick(tabTransfers);
-            handleSync(2000);
+            handleSync(5000);
             click(tabTransfersBetweenAccounts);
             handleSync(2000);
             click(drpdwnDebitFrom);

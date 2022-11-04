@@ -22,6 +22,9 @@ public class Constants {
     public static int ZAP_PROXY_PORT = 8081;
     public static String ZAP_API_KEY="fpa752knsp5alfsun1lh1ik15s";
     public static String ZAP_PROXY_SERVER=ZAP_PROXY_ADDRESS+":"+ZAP_PROXY_PORT;
+    public static String DBUser="root";
+    public static String DBPassword="Automation@22";
+    public static String DBURL="jdbc:mysql://localhost:3306/user";
 
 
 }

@@ -31,7 +31,7 @@ public class Helper {
         try{
             wait.until(ExpectedConditions.visibilityOfElementLocated(by)).click();
             }catch (Exception ex){
-            throw new Exception(ex.toString());
+            throw new Exception("Performing click action on element is failed: "+ex.toString());
             }
         }
 
@@ -39,7 +39,7 @@ public class Helper {
         try{
             waitAndFindElement(by).click();
         }catch (Exception ex){
-            throw new Exception(ex.toString());
+            throw new Exception("Performing click action on element is failed: "+ex.toString());
         }
     }
 

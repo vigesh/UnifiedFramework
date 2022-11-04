@@ -13,8 +13,8 @@ import utils.Constants;
 import java.lang.reflect.Method;
 
 @Listeners({TestListener.class})
-@Epic("Regression Test")
-@Feature("Corporate Account")
+@Epic("Security Test")
+@Feature("Login Page")
 public class SecurityTest extends BaseTest {
 
     @Test(priority = 1)
