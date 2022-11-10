@@ -1,30 +1,28 @@
 package utils;
 
 import app.AppSetup;
-import com.aventstack.extentreports.Status;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.asserts.SoftAssert;
+
 import java.time.Duration;
 import java.util.List;
-import java.util.Random;
-import java.util.concurrent.TimeUnit;
-import static extentreports.ExtentTestManager.getTest;
 
 public class Helper {
-    protected AndroidDriver<MobileElement> driver;
+    protected AppiumDriver driver;
     public WebDriverWait wait;
     ExcelUtility excel = new ExcelUtility();
     public SoftAssert softAssert=new SoftAssert();
 
 
     //Constructor
-    public Helper(AndroidDriver<MobileElement> driver) {
-        this.driver = driver;
-        wait = new WebDriverWait(driver, 15);
+    public Helper() {
+        this.driver = AppSetup.getDriver();
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
     }
 
     protected void waitAndClick(By by) throws Exception {
@@ -39,7 +37,7 @@ public class Helper {
         try{
             waitAndFindElement(by).click();
         }catch (Exception ex){
-            throw new Exception("Performing click action on element is failed: "+ex.toString());
+            throw new Exception("Performing click action on element is failed: "+ex);
         }
     }
 
@@ -54,18 +52,9 @@ public class Helper {
         }
     }
 
-    protected MobileElement waitAndFindElement(By by) throws Exception {
+    protected WebElement waitAndFindElement(By by) throws Exception {
         try{
-            return (MobileElement) wait.until(ExpectedConditions.visibilityOfElementLocated(by));
-
-        }catch (Exception ex){
-            throw new Exception(ex.toString());
-        }
-    }
-
-    protected String getText(By by) throws Exception {
-        try{
-            return waitAndFindElement(by).getText();
+            return  wait.until(ExpectedConditions.elementToBeClickable(by));
 
         }catch (Exception ex){
             throw new Exception(ex.toString());
@@ -91,5 +80,35 @@ public class Helper {
 
     protected void handleSync(long seconds) throws InterruptedException {
         Thread.sleep(seconds);
+    }
+
+    public String getText(By by) throws Exception {
+        String txt = null;
+        switch(Constants.platform) {
+            case "Android":
+                txt = getAttribute(by, "text");
+                break;
+            case "iOS":
+                txt = getAttribute(by, "label");
+                break;
+        }
+        return txt;
+    }
+    public void sendKeys(By by, String txt) throws Exception {
+        waitAndFindElement(by).sendKeys(txt);
+    }
+
+    public void sendKeys(By by, String txt, String msg) throws Exception {
+        waitAndFindElement(by).sendKeys(txt);
+    }
+
+    public String getAttribute(By by, String attribute) throws Exception {
+        return waitAndFindElement(by).getAttribute(attribute);
+    }
+    public void waitForVisibility(By by) throws Exception {
+        wait.withTimeout(Duration.ofSeconds(30))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class);
+        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
     }
 }

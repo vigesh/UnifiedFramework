@@ -35,6 +35,6 @@ public class DBTest extends BaseTest{
         Constants.testName = method.getName();
         ExtentTestManager.startTest(Constants.testName, "Run the test on Employee table");
         //DataReader.readTestData("Testdata", Constants.testName);
-        DBHelper.updateUser("2","userAddress","Kolkatta");
+        DBHelper.updateUser("2","userAddress","Mumbai");
     }
     }

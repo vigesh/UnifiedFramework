@@ -3,8 +3,7 @@ package listeners;
 import app.AppSetup;
 import com.aventstack.extentreports.Status;
 import extentreports.ExtentTestManager;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.AppiumDriver;
 import io.qameta.allure.Attachment;
 import jira.JiraCreateIssue;
 import jira.JiraServiceProvider;
@@ -20,13 +19,11 @@ import org.testng.ITestResult;
 import utils.Constants;
 import java.io.File;
 import java.io.IOException;
-import java.util.Objects;
-
 import static extentreports.ExtentManager.getExtentReports;
 import static extentreports.ExtentTestManager.getTest;
 
 public class TestListener implements ITestListener {
-    public AndroidDriver<MobileElement> driver= AppSetup.getDriver();
+    AppiumDriver driver= AppSetup.getDriver();
     private static String getTestMethodName(ITestResult iTestResult) {
         return iTestResult.getMethod().getConstructorOrMethod().getName();
     }
@@ -139,4 +136,6 @@ public class TestListener implements ITestListener {
             JiraServiceProvider.createJiraIssueForFailure("Bug", issueSummary, issueDescription);
         }
     }
+
+
 }

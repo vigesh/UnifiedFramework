@@ -1,10 +1,9 @@
 package testCases;
 
 import app.AppSetup;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
+import pages.Login;
+import utils.Constants;
 import utils.ReadProperty;
 
 public class BaseTest  {
@@ -14,18 +13,19 @@ public class BaseTest  {
         ReadProperty.loadProperties();
     }
 
-    @BeforeClass
+    @BeforeTest
     @Parameters({"device","platform","version"})
     public void envSetup(String device, String platform, String version) throws Exception {
         AppSetup.appLaunch(device, platform, version);
+        Constants.platform=platform;
     }
 
 
-    @AfterClass
+    @AfterTest
     public void clearBrowser() throws Exception {
         if(AppSetup.getDriver()!=null){
             AppSetup.getDriver().quit();
         }
     }
-    //public Login getLogin(){return new Login(AppSetup.getDriver()); }
+    public Login getLogin(){return new Login(); }
 }

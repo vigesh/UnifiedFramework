@@ -18,5 +18,6 @@ public class Constants {
     public static String testName;
     public static String testExeTime;
     public static String emailfiletoattach;
+    public static String platform;
 
 }

@@ -1,19 +1,14 @@
 package testCases;
 
-import app.AppSetup;
 import extentreports.ExtentTestManager;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidDriver;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
 import io.qameta.allure.Feature;
 import listeners.TestListener;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
-import pages.Login;
 import testDataUtil.DataReader;
 import utils.Constants;
-
 import java.lang.reflect.Method;
 
 @Listeners({TestListener.class})
@@ -21,24 +16,24 @@ import java.lang.reflect.Method;
 @Feature("Corporate Account")
 public class FunctionalTest extends BaseTest {
 
-    @Test
+    @Test(priority = 1)
     @Description("Verify the Account login")
     public void verifyAccountLogin(Method method) throws Exception {
         Constants.testName = method.getName();
         ExtentTestManager.startTest(Constants.testName, "Verify the account login");
         DataReader.readTestData("Testdata", Constants.testName);
-
-        Login login=new Login((AndroidDriver<MobileElement>) AppSetup.getDriver());
-        login.doAppLogin();
+        getLogin().doAppLogin();
     }
 
-@Test
-    @Description("Do Transfer between accounts")
-    public void verifyAccountTransferBetweenAccounts() throws Exception {
-    Login login=new Login((AndroidDriver<MobileElement>) AppSetup.getDriver());
-    login.pinSetForLogin();
-    login.accountTransferBetweenAccounts();
+    @Test(priority = 2)
+    @Description("Pin Set for the app")
+    public void doPinSetForTheApp() throws Exception {
+    getLogin().pinSetForLogin();
 
 }
-
+    @Test(priority = 3)
+    @Description("Do Transfer between accounts")
+    public void andVerifyAccountTransferBetweenAccounts() throws Exception {
+        getLogin().accountTransferBetweenAccounts();
+    }
 }
