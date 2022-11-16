@@ -3,9 +3,13 @@ package pages;
 import com.aventstack.extentreports.Status;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import utils.Constants;
-import utils.Helper;
+import utils.*;
+
+
+
+import java.util.List;
 
 import static extentreports.ExtentTestManager.getTest;
 
@@ -14,9 +18,6 @@ public class Login extends Helper {
 //        super(driver);
 //
 //    }
-    /**
-     * Web Elements
-     */
     By txtUsername = By.xpath("//android.view.View[1]/android.view.View/android.widget.EditText");
     By txtPassword = By.xpath("//android.view.View[2]/android.view.View/android.widget.EditText|//android.widget.EditText[@text='Enter password']");
     By btnLogin = By.xpath("//android.widget.Button[@text='Login']");
@@ -24,13 +25,13 @@ public class Login extends Helper {
     By secondclick = By.xpath("//*[@resource-id='android:id/content']/android.webkit.WebView");
     By hamburgerIcon = By.xpath("//android.view.View[@resource-id='nav']//android.widget.Button");
     By tabTransfers = By.xpath("//android.view.View[@text='Transfers']");
-    By tabTransfersBetweenAccounts = By.xpath("//android.view.View[@text='Transfer Between Accounts']");
-    By drpdwnDebitFrom = By.xpath("//android.view.View[@text='Debit from *']/../../following-sibling::android.widget.Button");
-    By drpdownCreditTo = By.xpath("//android.view.View[@text='Credit to *']/../../following-sibling::android.widget.Button");
-    By txtAmountToTransfer = By.xpath("//android.view.View[2]/android.widget.EditText");
+    By tabTransfersBetweenAccounts = By.xpath("//*[@text='Transfer Between Accounts']");
+    By drpdwnDebitFrom = By.xpath("//*[@text='Debit from *']/../../following-sibling::android.widget.Button");
+    By drpdownCreditTo = By.xpath("//*[@text='Credit to *']/../../following-sibling::android.widget.Button");
+    By txtAmountToTransfer = By.xpath("//android.view.View[2]/android.widget.EditText|//android.view.TextView[2]/android.widget.EditText");
     By btnContinue = By.xpath("//android.widget.Button[@text='Continue']|//android.widget.Button[@text='Confirm']");
     By btnConfirm = By.xpath("//android.widget.Button[@text='Confirm']|//*[@resource-id='nav']//android.widget.Button[@text='Confirm']");
-    By lblAckMsg = By.xpath("//android.view.View[contains(@text,'Your request has been sent for approval')]");
+    By lblAckMsg = By.xpath("//*[contains(@text,'Your request has been sent for approval')]");
 
     @Step("Login the app with valid credentials")
     public Login doAppLogin() throws Exception {
@@ -73,13 +74,13 @@ public class Login extends Helper {
         handleSync(2000);
         waitAndClick(tabTransfers);
         handleSync(5000);
-        click(tabTransfersBetweenAccounts);
+        waitAndClick(tabTransfersBetweenAccounts);
         handleSync(2000);
         click(drpdwnDebitFrom);
-        By debitAccountNumber = By.xpath("//android.widget.Button[contains(@text,'EBQ11113487654')]");
+        By debitAccountNumber = By.xpath("//android.view.View//android.widget.Button[contains(@text,'EBQ11113487654')]|//*[contains(@text,'EBQ11113487654')]");
         click(debitAccountNumber);
         click(drpdownCreditTo);
-        By creditAccountNumber = By.xpath("//android.widget.Button[contains(@text,'EBQ11223387654')]");
+        By creditAccountNumber = By.xpath("//android.view.View//android.widget.Button[contains(@text,'EBQ11223387654')]|//*[contains(@text,'EBQ11223387654')]");
         click(creditAccountNumber);
         sendKey(txtAmountToTransfer, "200");
         click(btnContinue);

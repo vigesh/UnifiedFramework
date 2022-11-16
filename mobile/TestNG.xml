@@ -2,7 +2,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Test Suite" parallel="tests" thread-count="1">
 
-    <test name="Regression Test" >
+    <test name="Cloud Execution" >
         <parameter name="device" value="Oppo K10"/>
         <parameter name="platform" value="android"/>
         <parameter name="version" value="11"/>
@@ -10,5 +10,14 @@
             <class name="testCases.FunctionalTest"/>
         </classes>
     </test>
+
+    <!--<test name="Local Execution" >
+        <parameter name="device" value="emulator-5554"/>
+        <parameter name="platform" value="android"/>
+        <parameter name="version" value="11"/>
+        <classes>
+            <class name="testCases.FunctionalTest"/>
+        </classes>
+    </test>-->
 
 </suite>

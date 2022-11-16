@@ -53,8 +53,8 @@ public class AppSetup {
                 File classpathRoot = new File(System.getProperty("user.dir"));
                 File appDir = new File(classpathRoot, "/resources/");
                 File app = new File(appDir, "EBANQ_2.4.0.apk");
-                capabilities.setCapability("deviceName", "emulator-5554");
-                capabilities.setCapability("appium:platformVersion", "11");
+                capabilities.setCapability("deviceName", device);
+                capabilities.setCapability("appium:platformVersion", version);
                 capabilities.setCapability("appium:platformName", MobilePlatform.ANDROID);
                 capabilities.setCapability("appium:app", app.getAbsolutePath());
                 capabilities.setCapability("appPackage", "com.ebanq.Ebanq");
