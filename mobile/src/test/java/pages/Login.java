@@ -28,7 +28,7 @@ public class Login extends Helper {
     By tabTransfersBetweenAccounts = By.xpath("//*[@text='Transfer Between Accounts']");
     By drpdwnDebitFrom = By.xpath("//*[@text='Debit from *']/../../following-sibling::android.widget.Button");
     By drpdownCreditTo = By.xpath("//*[@text='Credit to *']/../../following-sibling::android.widget.Button");
-    By txtAmountToTransfer = By.xpath("//android.view.View[2]/android.widget.EditText|//android.view.TextView[2]/android.widget.EditText");
+    By txtAmountToTransfer = By.xpath("//android.view.View[2]/android.widget.EditText|//*[contains(@text,'Amount to transfer')]/following-sibling::android.view.View//android.widget.EditText");
     By btnContinue = By.xpath("//android.widget.Button[@text='Continue']|//android.widget.Button[@text='Confirm']");
     By btnConfirm = By.xpath("//android.widget.Button[@text='Confirm']|//*[@resource-id='nav']//android.widget.Button[@text='Confirm']");
     By lblAckMsg = By.xpath("//*[contains(@text,'Your request has been sent for approval')]");

@@ -30,12 +30,12 @@ public class TestListener implements ITestListener {
 
     //Text attachments for Allure
     @Attachment(value="Page screenshot", type="image/png")
-    public byte[] saveScreenshotPNG(WebDriver driver) {
+    public byte[] saveScreenshotPNG(AppiumDriver driver) {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
 
-    public String saveScreenshot(WebDriver driver) throws IOException {
-        TakesScreenshot ts = (TakesScreenshot) driver;
+    public String saveScreenshot(AppiumDriver driver) throws IOException {
+        TakesScreenshot ts = driver;
         File source = ts.getScreenshotAs(OutputType.FILE);
         String dest = System.getProperty("user.dir") + "\\extent-reports\\Screenshots\\" + Constants.testName + "_" + System.currentTimeMillis() + ".png";
         File destination = new File(dest);
