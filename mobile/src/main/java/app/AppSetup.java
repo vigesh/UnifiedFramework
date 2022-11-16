@@ -10,6 +10,7 @@ import utils.Constants;
 import java.io.File;
 import java.net.URL;
 import java.time.Duration;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 
 public class AppSetup {
@@ -26,19 +27,21 @@ public class AppSetup {
         try {
 
             if (Constants.appDetails.get("runmode").equalsIgnoreCase("lambda")) {
-                capabilities.setCapability("build", "EBANQ App");
-                capabilities.setCapability("name", "EBANQ");
-                capabilities.setCapability("deviceName", device);
-                capabilities.setCapability("platformVersion", version);
-                capabilities.setCapability("platformName", platform);
-                capabilities.setCapability("isRealMobile", true);
-                //AppURL (Create from Wikipedia.apk sample in project)
-                capabilities.setCapability("app", "lt://APP10160521021666780099488682"); //Enter your app url
-                capabilities.setCapability("deviceOrientation", "PORTRAIT");
-                capabilities.setCapability("console", true);
-                capabilities.setCapability("network", false);
-                capabilities.setCapability("visual", true);
-                capabilities.setCapability("devicelog", true);
+                HashMap<String, Object> ltOptions = new HashMap<String, Object>();
+                ltOptions.put("w3c", true);
+                ltOptions.put("name", "EBANQ");
+                ltOptions.put("platformName", platform);
+                ltOptions.put("deviceName", device);
+                ltOptions.put("platformVersion", version);
+                ltOptions.put("isRealMobile", true);
+                ltOptions.put("app", "lt://APP10160521021666780099488682");
+                ltOptions.put("deviceOrientation", "PORTRAIT");
+                ltOptions.put("console", true);
+                ltOptions.put("network", false);
+                ltOptions.put("visual", true);
+                ltOptions.put("devicelog", true);//Enter your app url
+
+                capabilities.setCapability("lt:options", ltOptions);
 
                 String hub = "https://" + Constants.appDetails.get("lambda.user") + ":" + Constants.appDetails.get("lambda.accesskey") + gridURL;
                 if(platform.equalsIgnoreCase("ios")){
